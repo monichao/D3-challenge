@@ -25,7 +25,7 @@ var chartGroup = svg.append("g")
 // You need to create a scatter plot between two of the data variables such as 
 //Healthcare vs. Poverty or Smokers vs. Age.
 d3.csv("/assets/data/data.csv").then(function(myData) {
-    
+    console.log(myData);
     // convert to numbers
     myData.forEach(function(data) {
         data.poverty = +data.poverty;
@@ -35,7 +35,7 @@ d3.csv("/assets/data/data.csv").then(function(myData) {
     // x scale
     var xLinearScale = d3.scaleLinear()
         .domain([d3.min(myData, d=>d.poverty)*0.9, 
-            d3.max(myData, d => d.poverty)*1.1])
+            d3.max(myData, d => d.poverty)])
         .range([0, width]);
 
     // y scale 
@@ -65,8 +65,8 @@ d3.csv("/assets/data/data.csv").then(function(myData) {
         .append("circle")
         .attr("cx", d => xLinearScale(d.poverty))
         .attr("cy", d => yLinearScale(d.healthcare))
-        .attr("r", 12)
-        .attr("fill", "blue")
+        .attr("r", 15)
+        .attr("fill", "aqua")
         .attr("opacity", ".3");
 
     // text in circles with d.abbr
